@@ -9,8 +9,17 @@ import Categories from "./pages/Categories"
 import FootballMatches from './pages/FootballMatches'
 import Getyourticket from "./components/Getyourticket";
 import Ticketpage from './pages/Ticketpage'
+import { useWallet } from "./components/provider-js/use-wallet";
+import Places from './pages/Places'
+import Test from './components/TicketCard'
+import MatchTickets from "./pages/MatchTickets";
 function App() {
-  return (
+  const { loading, error } = useWallet()
+
+
+ 
+  
+    return (
     <div className="App">
       <Navbar />
       <Routes>
@@ -19,8 +28,9 @@ function App() {
         <Route path="/DAO" element={<Dao/>} />
         <Route path='/Matches' element={<Categories/>} />
         <Route path='/FootballMatches' element={<FootballMatches/>} />
-        <Route  path='/FootballMatches/:id' element={<Getyourticket/>} />
         <Route  path='/ticket' element={<Ticketpage/>} />
+        <Route  path='/test' element={<Test/>} />
+        <Route  path='/matchTickets/:matchId' element={<MatchTickets/>} />
       </Routes>
    
     </div>

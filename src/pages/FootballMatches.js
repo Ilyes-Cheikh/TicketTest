@@ -20,25 +20,17 @@ const FootballMatches = () => {
   const [isError, setIsError] = useState(false);
   const fetchData = () => {
     fetch("https://api.sofascore.com/api/v1/sport/football/scheduled-events/"+ datetoday, {
-        "headers": {
-          "accept": "*/*",
-          "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-          "cache-control": "max-age=0",
-          "if-none-match": "W/\"36050c2ee9\"",
-          "sec-ch-ua": "\".Not/A)Brand\";v=\"99\", \"Google Chrome\";v=\"103\", \"Chromium\";v=\"103\"",
-          "sec-ch-ua-mobile": "?0",
-          "sec-ch-ua-platform": "\"Windows\"",
-          "sec-fetch-dest": "empty",
-          "sec-fetch-mode": "cors",
-          "sec-fetch-site": "same-site"
-        },
-        "referrer": "https://www.sofascore.com/",
-        "referrerPolicy": "strict-origin-when-cross-origin",
-        "body": null,
-        "method": "GET",
-        "mode": "cors",
-        "credentials": "omit"
-      })
+      "headers": {
+        authority: 'api.sofascore.com',
+        accept: '*/*',
+        'accept-language': 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
+        'cache-control': 'max-age=0',
+        origin: 'https://www.sofascore.com',
+        referer: 'https://www.sofascore.com/',
+        'sec-ch-ua': '^\^Chromium^^;v=^\^104^^, ^\^'
+      },
+      "method": "GET"
+    })
       .then((response) => response.json())
       .then((data) => {
         setIsLoading(false);
@@ -50,14 +42,14 @@ const FootballMatches = () => {
         for (var game in events) {
             var league = events[i]['tournament']['name'];
             var category = events[i]['tournament']['category']['name'];
-            var id = events[i]['tournament']['id'];
+            var id = events[i]['customId'];
             
             var hometeam = events[i]['homeTeam']['name'];
             var awayteam = events[i]['awayTeam']['name'];
 
             var homeid = events[i]['homeTeam']['id'];
             var awayid = events[i]['awayTeam']['id'];
-            
+          
             date = events[i]['startTimestamp'];
 
 
@@ -81,6 +73,8 @@ const FootballMatches = () => {
                 'description' :  league + ' - ' + category ,
                 'team1': hometeam,
                 'team2' : awayteam,
+                'idteam1' : homeid,
+                'idteam2' : awayid,
                 'imgUrl1' : "https://api.sofascore.app/api/v1/team/"+ homeid +"/image",
                 'imgUrl2': "https://api.sofascore.app/api/v1/team/"+ awayid +"/image"})
             
@@ -91,6 +85,7 @@ const FootballMatches = () => {
         // end converting
 
         setProjects(games);
+  
       })
       .catch((error) => {
         setIsLoading(false);

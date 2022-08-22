@@ -15,7 +15,7 @@ const Navbar = () => {
         </div>
         <div className="gpt3__navbar-links_container">
           <Link to='/Home'> <p>Home</p> </Link>
-          <Link to='/Metaverse'>  <p>Metaverse </p> </Link>
+       
           <Link to='/Matches'>  <p> Matches</p> </Link>
           <Link to='/DAO'>  <p> DAO </p> </Link>
         </div>

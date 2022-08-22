@@ -21,6 +21,11 @@ const Dao = () => (
     <div className="gpt3__features-heading">
       <h1 className="gradient__text">Our DAO model allows the community to have the POWER TO DECIDE the next moves.</h1>
       <p>Sign up , Be part of our world , be a DECIDER ! </p>
+      <a href="https://dao-talan.vercel.app/" target="_blank">
+        <button className='dao_button'>
+          Explore more! 
+        </button>
+        </a>
     </div>
     <div className="gpt3__features-container">
       {featuresData.map((item, index) => (
